@@ -34,33 +34,39 @@ def find_user_through_email(email):
     return [second_user_localId, second_user_name, final_second_user_dict]
 
 
-def add(need):
-    needs = {'needs':[]}
-    if db.child("rooms").child(login_session['room']['localId']).get().val()['needs'] == '' :
-        db.child("rooms").child(login_session['room']['localId']).update(needs)
-    else:
-        db.child("rooms").child(login_session['room']['localId']).update(needs)
+# def add(need):
 
-    
-
+    # roomsx = db.child("rooms").child(login_session['room']['localId']).get().val()  
+    # if dict(roomsx)['needs'] == '' :
+    #     needs = {'needs': [""]}
+    #     roomsx = db.child("rooms").child(login_session['room']['localId']).get().val()
+    #     print('bad')
+    #     needs = {"needs": [need]}
+    #     db.child("rooms").child(login_session['room']['localId']).update(needs)
+    # else:
+    #     roomsx = db.child("rooms").child(login_session['room']['localId']).get().val()
+    #     needs = dict(roomsx)['needs']
+    #     needs = needs.append(need)
+    #     db.child("rooms").child(login_session['room']['localId']).set(needs)
 
 @app.route ('/signin', methods = (['GET', 'POST']))
 def signin():
     error = ""
     if request.method == "POST":
-        user = request.form['username']
+        user = request.form['user']
         password = request.form['password']
         state = request.form['job']
         user = user + '@gmail.com'
-        try:
-            if state == 'nurse':
-                login_session['nurse'] = auth.sign_in_with_user_and_password(user, password)
-                return redirect(url_for('home'))
-            if state == 'patient':
-                login['room'] = auth.sign_in_with_user_and_password(user, password)
-                return redirect(url_for('home'))
-        except:
-            error = "smth went wrong"
+        # try:
+        if state == 'nurse':
+            login_session['nurse'] = auth.sign_in_with_email_and_password(user, password)
+            return redirect(url_for('home'))
+        if state == 'patient':
+            login_session['room'] = auth.sign_in_with_email_and_password(user, password)
+            return redirect(url_for('home'))
+    # except:
+        error = "smth went wrong"
+        return error
     return render_template('signin.html')
 
 
@@ -109,12 +115,12 @@ def medicine():
 
 @app.route('/nurse')
 def nurse():
-    add('nurse')
+    # add('nurse')
     return render_template('nurse.html')
 
 @app.route('/supplies')
 def supplies():
-    add('supplies')
+    # add('supplies')
     return render_template('supplies.html')     
 
 @app.route('/ye')
