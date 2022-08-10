@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    html, body,div{
+        height: 100%;
+    }
+
+    div{
+        display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center; 
+    }
+  </style>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>You asked for General Help!</h1>
+  <h2>The nurses are on the way.</h2> 
+  <p><span id="countdowntimer">5 </span> Seconds till redirect</p>
+</div>
+<script type="text/javascript">
+    var timeleft = 5;
+    var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft <= 0)
+        clearInterval(downloadTimer);
+    if (timeleft == 0){
+    window.location.href = '/'
+
+}},1000);
+</script>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <style>
+      html, body,div{
+          height: 100%;
+          color: white;
+          font-weight: bold;
+      }
+      div{
+          display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
+      }
+    </style>
+</head>
+<body id="bg">
+
+
+  <div class="jumbotron text-center">
+    <h1>SOS</h1>
+    <h2>Coming your way.</h2> 
+    <p><span id="countdowntimer">5 </span> Seconds till redirect</p>
+  </div>
+  <script type="text/javascript">
+      var timeleft = 5;
+      var downloadTimer = setInterval(function(){
+      timeleft--;
+      document.getElementById("countdowntimer").textContent = timeleft;
+      if(timeleft <= 0)
+          clearInterval(downloadTimer);
+      if (timeleft == 0){
+      window.location.href = '/'
+  
+  }},1000);
+  </script>
+
+</body>
+</html>
