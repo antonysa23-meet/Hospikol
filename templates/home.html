@@ -239,7 +239,7 @@ recognition.onresult = function(event) {
   var current = event.resultIndex;
 
   // Get a transcript of what was said.
-  var transcript = event.results[current][0].transcript;
+  var transcript = ' ' + event.results[current][0].transcript + ' ';
 
   
 
